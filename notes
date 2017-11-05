@@ -1,0 +1,14 @@
+Try using:
+
+th neural_style.lua -tv_weight 0.0001 -style_image style.jpg -content_image content.jpg -output_image out.png -image_size 1200 -save_iter 50 -content_weight 10 -style_weight 1000 -num_iterations 1000 -model_file models/nin_imagenet_conv.caffemodel -proto_file models/train_val.prototxt -content_layers relu0,relu1,relu3,relu5,relu7,relu9,relu12 -style_layers relu0,relu1,relu3,relu5,relu7,relu9,relu12
+
+Or:
+
+th neural_style.lua -style_image style.jpg -content_image content.jpg -output_image out.png -image_size 1200 -content_weight 10 -style_weight 1000 -save_iter 50 -num_iterations 1000 -model_file models/nin_imagenet_conv.caffemodel -proto_file models/train_val.prototxt -content_layers relu0,relu1,relu3,relu5,relu7,relu9,relu12 -style_layers relu0,relu1,relu3,relu5,relu7,relu9,relu12
+
+Setting the -tv_weight to 0.0001 will make the image really sharp. Setting -content_weight to 10 and -style_weight to 1000 will help produce good results with many styles, but you should play around with the weights. The -style_layers and -content_layers are some of the most important parts of creating images. I find good results from using them all, but you can play around with omitting some layers.
+
+I also would recommend using -save_iter 50 or -save_iter 10 combined with -num_iterations 400. Some of the best results will occur between 50 and 200 iterations, but occasionally some of the best results will be a bit before or after that range of iterations.
+
+th neural_style.lua -output_image out.png -image_size 512 -content_weight 10 -style_weight 1000 -save_iter 50 -num_iterations 300 -model_file models/nin_imagenet_conv.caffemodel -proto_file models/train_val.prototxt -content_layers relu0,relu1,relu3,relu5,relu7,relu9,relu12 -style_layers relu0,relu1,relu3,relu5,relu7,relu9,relu12 -gpu -1 -style_image style/the_scream.jpg -content_image inputs/jembatan-pasupati.jpg 
+

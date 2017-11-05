@@ -1,0 +1,17 @@
+th neural_style.lua 
+-tv_weight 0.0001 
+-image_size 400
+-content_weight 10
+-style_weight 1000
+-model_file models/nin_imagenet_conv.caffemodel
+-proto_file models/train_val.prototxt
+-content_layers relu0,relu1,relu3,relu5,relu7,relu9,relu12
+-style_layers relu0,relu1,relu3,relu5,relu7,relu9,relu12 
+
+-style_image style/frida_kahlo.jpg 
+-content_image inputs/brad_pitt.jpg 
+-output_image outputs/out.png  
+-save_iter 50 
+-print_iter 20      
+-gpu -1 
+-num_iterations 400
